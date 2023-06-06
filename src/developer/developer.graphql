@@ -1,0 +1,36 @@
+enum DeveloperLevel {
+  SENIOR
+  JUNIOR
+}
+
+type Developer {
+  id: Int!
+  name: String!
+  email: String!
+  level: DeveloperLevel!
+}
+
+input DeveloperInput {
+  name: String!
+  email: String!
+  level: DeveloperLevel!
+}
+
+input DeveloperUpdate {
+  id: Int!
+  name: String
+  email: String
+  level: DeveloperLevel
+}
+
+type Query {
+  developers: [Developer!]!
+  developer(id: Int!): Developer
+  developersByLevel(level: DeveloperLevel!): [Developer!]!
+}
+
+type Mutation {
+  createDeveloper(input: DeveloperInput!): Developer!
+  updateDeveloper(input: DeveloperUpdate!): Developer!
+  deleteDeveloper(id: Int!): Boolean!
+}
